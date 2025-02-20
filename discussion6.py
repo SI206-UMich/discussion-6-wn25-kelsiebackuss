@@ -42,7 +42,13 @@ def get_annual_max(d):
     Note: Don't strip or otherwise modify strings. Do not change datatypes except where necessary.
         You'll have to change vals to int to compare them. 
     '''
-    pass
+    max_list = []
+
+    for year, months in d.items():
+        max_month, max_val = max(months.items(), key=lambda x: int(x[1]))
+        max_list.append((year, max_month, int(max_val)))
+
+    return max_list
 
 def get_month_avg(d):
     '''
@@ -56,7 +62,13 @@ def get_month_avg(d):
     Note: Don't strip or otherwise modify strings. Do not change datatypes except where necessary. 
         You'll have to make the vals int or float here and round the avg to pass tests.
     '''
-    pass
+    avg_dict = {}
+
+    for year, months in d.items():
+        values = [int(v) for v in months.values()]
+        avg_dict[year] = round(sum(values) / len(values))
+
+    return avg_dict
 
 class dis7_test(unittest.TestCase):
     '''
